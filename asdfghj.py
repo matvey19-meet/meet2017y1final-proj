@@ -14,8 +14,7 @@ START_LENGTH=8
 pos_list=[]
 stamp_list=[]
 log=turtle.clone()
-log.shape('square')
-log.color('brown')
+log.shape('pleasework')
 
 def make_log(x,y):
     x_pos=x

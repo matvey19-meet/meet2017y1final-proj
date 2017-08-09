@@ -19,6 +19,7 @@ turtle.register_shape('pleasework.gif')
 character= turtle.clone()
 character.shape("characterright.gif")
 character.penup()
+character.goto(-450, 10)
 turtle.hideturtle()
 
 ##character.goto(-350,0)
@@ -77,11 +78,13 @@ num_2= 5
 
 direction = UP
 horizontal_direction = RIGHT
+log_top=log.pos()[1]+height
 
 def up():
     global direction
-    direction = UP
-    move_char()
+    if not character.pos()[1] == log_top :
+        direction = UP
+        move_char()
     #print("You pressed the up key")
     
 def left():
@@ -94,8 +97,9 @@ def left():
     
 def down():
     global direction
-    direction = DOWN
-    move_char()
+    if not character.pos()[1] == log_top:
+        direction = DOWN
+        move_char()
     #print("You pressed the down key")
     
 def right():
@@ -110,7 +114,7 @@ turtle.hideturtle()
 #______________________________________________________________________________________________|    
 def jump_right():
     move_x = num_1
-    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,4,3,2,1,-1,-2,-3,-4,-5,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,4,3,2,1,-1,-2,-3,-4,-5,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
     for i in move_y:
         new_x = character.pos()[0] + move_x
@@ -121,7 +125,6 @@ def jump_right():
         x_pos=character.pos()[0]
         y_pos=character.pos()[1]
         for log in log_list:
-            log_top=log.pos()[1]+height
             log_x=log.pos()[0]
             if(y_pos<=log_top+10) and (y_pos>=log_top-10) and (x_pos>=log_x-length) and(x_pos<=log_x+length):
                 character.goto(x_pos, log_top)
@@ -133,7 +136,7 @@ def jump_right():
 
 def jump_left():
     move_x = -num_1
-    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
     for i in move_y:
         new_x = character.pos()[0] + move_x
@@ -144,7 +147,6 @@ def jump_left():
         x_pos=character.pos()[0]
         y_pos=character.pos()[1]
         for log in log_list:
-            log_top=log.pos()[1]+height
             log_x=log.pos()[0]
             if(y_pos<=log_top+10) and (y_pos>=log_top-10) and (x_pos>=log_x-length) and(x_pos<=log_x+length):
                 character.goto(x_pos, log_top )
