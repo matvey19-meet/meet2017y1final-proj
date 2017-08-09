@@ -1,4 +1,4 @@
-import turtle
+import  turtle
 import random
 turtle.penup()
 
@@ -35,21 +35,26 @@ def make_food():
 food.hideturtle()
 make_food()
 food.showturtle()
-new_character=my_character.append(food_stamp)
 
 
+food_list=[]
 for i in range (1):
     obj=turtle.clone()
-    obj,shape('circle')
+    obj.shape('triangle')
     obj.penup()
     obj.goto(-300,100)
+    obj.stamp()
     food_list.append(obj)
 
-eaten.food=[]
-for i in range (1)
-food=food_list[i]
-if character.pos()=food.pos():
-    eatinfood.append(i)
+eatenfood=[]
+for i in range (1):
+    nutrition=food_list[i]
+    if character.pos()==nutrition.pos():
+        eatenfood.append(nutrition)
+def move_character():
+    if len(eatenfood)!=0:
+       food.goto(character.pos())
+       
     
 
 
