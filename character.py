@@ -12,15 +12,19 @@ turtle.tracer(1,0)
 pos_list = []
 
 #REGISTERING SHIT
+
+
 turtle.penup()
+turtle.register_shape('pleasework.gif')
 turtle.register_shape("characterleft.gif")
 turtle.register_shape("characterright.gif")
-turtle.register_shape('pleasework.gif')
 character= turtle.clone()
 character.shape("characterright.gif")
 character.penup()
 character.goto(-450, 10)
 turtle.hideturtle()
+
+
 
 ##character.goto(-350,0)
 
@@ -30,7 +34,7 @@ log_list = []
 
 log=turtle.clone()
 log.showturtle()
-log.shape('pleasework.gif')
+log.shape("pleasework.gif")
 log_list.append(log)
 
 log=turtle.clone()
@@ -114,47 +118,66 @@ turtle.hideturtle()
 #______________________________________________________________________________________________|    
 def jump_right():
     move_x = num_1
-    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,4,3,2,1,-1,-2,-3,-4,-5,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
-    for i in move_y:
-        new_x = character.pos()[0] + move_x
-        new_y = character.pos()[1] + i
-        turtle.ontimer(character.goto(new_x,new_y),speed)
-        #add aya's code to check for landing
-        #if land, break
-        x_pos=character.pos()[0]
-        y_pos=character.pos()[1]
-        for log in log_list:
-            log_x=log.pos()[0]
-            if(y_pos<=log_top+10) and (y_pos>=log_top-10) and (x_pos>=log_x-length) and(x_pos<=log_x+length):
-                character.goto(x_pos, log_top)
-                success = True
-                break
-    if success == False:
-        quit()
+
     
+
+    for i in move_y:
+        if success != True:
+            new_x = character.pos()[0] + move_x
+            new_y = character.pos()[1] + i
+            turtle.ontimer(character.goto(new_x,new_y),speed)       
+            #add aya's code to check for landing
+            #if land, break
+            x_pos=character.pos()[0]
+            print(x_pos)
+            y_pos=character.pos()[1]
+
+            if y_pos < log_top - 20:
+                quit()
+            elif y_pos == log_top - 10:
+                for log in log_list:
+                    log_x = log.pos()[0]
+                    if log_x - length <= x_pos <= log_x + length:
+                        character.goto(x_pos, log_top + 10)
+                        success = True
+                        print(success)
+                        break
+        else:
+            break
+
 
 def jump_left():
     move_x = -num_1
-    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
-    for i in move_y:
-        new_x = character.pos()[0] + move_x
-        new_y = character.pos()[1] + i
-        turtle.ontimer(character.goto(new_x,new_y),speed)
-        #add aya's code to check for landing
-        #if land, break    
-        x_pos=character.pos()[0]
-        y_pos=character.pos()[1]
-        for log in log_list:
-            log_x=log.pos()[0]
-            if(y_pos<=log_top+10) and (y_pos>=log_top-10) and (x_pos>=log_x-length) and(x_pos<=log_x+length):
-                character.goto(x_pos, log_top )
-                success = True
-                break
-    if success == False:
-        quit()
+
     
+
+    for i in move_y:
+        if success != True:
+            new_x = character.pos()[0] + move_x
+            new_y = character.pos()[1] + i
+            turtle.ontimer(character.goto(new_x,new_y),speed)       
+            #add aya's code to check for landing
+            #if land, break
+            x_pos=character.pos()[0]
+            print(x_pos)
+            y_pos=character.pos()[1]
+
+            if y_pos < log_top - 20:
+                quit()
+            elif y_pos == log_top - 10:
+                for log in log_list:
+                    log_x = log.pos()[0]
+                    if log_x - length <= x_pos <= log_x + length:
+                        character.goto(x_pos, log_top + 10)
+                        success = True
+                        print(success)
+                        break
+        else:
+            break
 
 
 def jump():
