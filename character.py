@@ -1,18 +1,56 @@
 ###CHARACTER###:\
 import turtle
-
+SIZE_X=1000
+SIZE_Y=500
+up_edge=250
+down_edge=-250
+height=20
+length=80
+turtle.setup(SIZE_X,SIZE_Y)
 turtle.tracer(1,0)
 
 pos_list = []
 
-#CREATE CHARACTER SHAPE
-
+#REGISTERING SHIT
+turtle.penup()
 turtle.register_shape("characterleft.gif")
 turtle.register_shape("characterright.gif")
+turtle.register_shape('pleasework.gif')
 character= turtle.clone()
 character.shape("characterright.gif")
 character.penup()
 turtle.hideturtle()
+
+##character.goto(-350,0)
+
+#NEW CODE BEWARE!!!
+turtle.goto(300,0)
+log_list = []
+
+log=turtle.clone()
+log.showturtle()
+log.shape('pleasework.gif')
+log_list.append(log)
+
+log=turtle.clone()
+log.showturtle()
+log.shape('pleasework.gif')
+log.goto(100,0)
+log_list.append(log)
+
+log = turtle.clone()
+log.showturtle()
+log.shape('pleasework.gif')
+log.goto(-100,0)
+log_list.append(log)
+
+log=turtle.clone()
+log.showturtle()
+log.shape('pleasework.gif')
+log.goto(-300,0)
+log_list.append(log)
+
+
 
 #CONSTRUCT CHARACTER
 
@@ -70,73 +108,52 @@ def right():
 
 turtle.hideturtle()
 #______________________________________________________________________________________________|    
-def jump_right():                                                                              
-  
-    turtle.ontimer(character.goto(character.pos()[0], character.pos()[1]),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ 2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]+ 1),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- 1),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- 2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]+num_1, character.pos()[1]- num_2),speed)
+def jump_right():
+    move_x = num_1
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,4,3,2,1,-1,-2,-3,-4,-5,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    success = False
+    for i in move_y:
+        new_x = character.pos()[0] + move_x
+        new_y = character.pos()[1] + i
+        turtle.ontimer(character.goto(new_x,new_y),speed)
+        #add aya's code to check for landing
+        #if land, break
+        x_pos=character.pos()[0]
+        y_pos=character.pos()[1]
+        for log in log_list:
+            log_top=log.pos()[1]+height
+            log_x=log.pos()[0]
+            if(y_pos<=log_top+10) and (y_pos>=log_top-10) and (x_pos>=log_x-length) and(x_pos<=log_x+length):
+                character.goto(x_pos, log_top)
+                success = True
+                break
+    if success == False:
+        quit()
+    
 
 def jump_left():
-  
-    turtle.ontimer(character.goto(character.pos()[0], character.pos()[1]),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ 4),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ 3),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ 2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]+ 1),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- 1),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- 2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- 3),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- 4),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
-    turtle.ontimer(character.goto(character.pos()[0]-num_1, character.pos()[1]- num_2),speed)
+    move_x = -num_1
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    success = False
+    for i in move_y:
+        new_x = character.pos()[0] + move_x
+        new_y = character.pos()[1] + i
+        turtle.ontimer(character.goto(new_x,new_y),speed)
+        #add aya's code to check for landing
+        #if land, break    
+        x_pos=character.pos()[0]
+        y_pos=character.pos()[1]
+        for log in log_list:
+            log_top=log.pos()[1]+height
+            log_x=log.pos()[0]
+            if(y_pos<=log_top+10) and (y_pos>=log_top-10) and (x_pos>=log_x-length) and(x_pos<=log_x+length):
+                character.goto(x_pos, log_top )
+                success = True
+                break
+    if success == False:
+        quit()
+    
+
 
 def jump():
     if horizontal_direction==LEFT:
