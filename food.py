@@ -8,7 +8,7 @@ food.shape('circle')
 
 SQUARE_SIZE=20
 square_length =1
-SIZE_X=800
+SIZE_X=1000
 SIZE_Y=500
 food_pos =[]
 food_stamps=[]
@@ -42,19 +42,18 @@ for i in range (1):
     obj=turtle.clone()
     obj.shape('triangle')
     obj.penup()
-    obj.goto(-300,100)
+    obj.goto(-420,100)
     obj.stamp()
     food_list.append(obj)
+    
+    
 
 eatenfood=[]
 for i in range (1):
+    character=turtle.clone()
     nutrition=food_list[i]
     if character.pos()==nutrition.pos():
         eatenfood.append(nutrition)
 def move_character():
     if len(eatenfood)!=0:
        food.goto(character.pos())
-       
-    
-
-
