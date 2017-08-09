@@ -35,3 +35,21 @@ def make_food():
 food.hideturtle()
 make_food()
 food.showturtle()
+new_character=my_character.append(food_stamp)
+
+
+for i in range (1):
+    obj=turtle.clone()
+    obj,shape('circle')
+    obj.penup()
+    obj.goto(-300,100)
+    food_list.append(obj)
+
+eaten.food=[]
+for i in range (1)
+food=food_list[i]
+if character.pos()=food.pos():
+    eatinfood.append(i)
+    
+
+
