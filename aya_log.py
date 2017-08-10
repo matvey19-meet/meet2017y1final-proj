@@ -7,9 +7,15 @@ down_edge=-250
 height=20
 length=80
 turtle.setup(SIZE_X,SIZE_Y)
+turtle.bgpic('bg.gif')
 
 turtle.hideturtle()
 turtle.register_shape('pleasework.gif')
+turtle.register_shape('burger.gif')
+food=turtle.clone()
+food.shape('burger.gif')
+food.showturtle()
+food.goto(-400,0)
 
 
 turtle.penup()

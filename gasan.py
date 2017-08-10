@@ -8,11 +8,12 @@ height=20
 length=80
 turtle.setup(SIZE_X,SIZE_Y)
 turtle.tracer(1,0)
-
+###########################3
+#aya's code
 pos_list = []
-
+turtle.bgpic('bg.gif')
 #REGISTERING SHIT
-
+######################3#####
 
 turtle.penup()
 turtle.register_shape('pleasework.gif')
@@ -56,7 +57,20 @@ log.goto(-300,0)
 log_list.append(log)
 
 
+############################
 
+#Gasan's code
+food_list=[]
+for i in range (1):
+    obj=turtle.clone()
+    obj.showturtle()
+    obj.shape('triangle')
+    obj.penup()
+    obj.goto(-420,100)
+    food_list.append(obj)
+
+
+############################
 #CONSTRUCT CHARACTER
 
 start_pos = character.pos()
@@ -194,7 +208,7 @@ turtle.onkeypress(right,RIGHT_ARROW)
 turtle.onkeypress(jump, SPACEBAR)
 
 turtle.listen()
-
+eatenfood=[]
 def move_char():
 
     my_pos = character.pos()
@@ -215,9 +229,36 @@ def move_char():
     my_pos = character.pos()
     pos_list.append(my_pos)
 
+################################
+#win condition
+def win():
+    win = True
+    if character.pos()[0] >= 390:
+        for food in food_list:
+            if food.pos()[0] < 390:
+                win = False
+    else:
+        win = False
 
+    if win = True:
+        print('You win!!!!!!!')
 
+###############################################
+#Gasan's code
+    for i in range (len(food_list)):
+        nutrition=food_list[i]
+        cx = character.pos()[0]
+        cy = character.pos()[1]
+        fx = nutrition.pos()[0]
+        fy = nutrition.pos()[1]
 
+        d = ((fx-cx)**2 + (cy-fy)**2)**0.5
+        if d <= 20:
+            eatenfood.append(nutrition)
+
+    for eaten in eatenfood:
+        eaten.goto(character.pos())
+#################################################
 
 
 

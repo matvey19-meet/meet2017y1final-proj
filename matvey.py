@@ -8,9 +8,11 @@ height=20
 length=80
 turtle.setup(SIZE_X,SIZE_Y)
 turtle.tracer(1,0)
+pos_list = []
+turtle.bgpic('bg.gif')
 
 pos_list = []
-
+eatenfood = []
 #REGISTERING SHIT
 
 
@@ -24,9 +26,6 @@ character.penup()
 character.goto(-450, 10)
 turtle.hideturtle()
 
-
-
-##character.goto(-350,0)
 
 #NEW CODE BEWARE!!!
 turtle.goto(300,0)
@@ -56,8 +55,19 @@ log.goto(-300,0)
 log_list.append(log)
 
 
-
+log_list.reverse()
 #CONSTRUCT CHARACTER
+
+
+food_list=[]
+for i in range (1):
+    obj=turtle.clone()
+    obj.showturtle()
+    obj.shape('triangle')
+    obj.penup()
+    obj.goto(-420,100)
+    food_list.append(obj)
+
 
 start_pos = character.pos()
 
@@ -83,7 +93,7 @@ num_2= 5
 direction = UP
 horizontal_direction = RIGHT
 log_top=log.pos()[1]+height
-
+current_log = 0
 def up():
     global direction
     if not character.pos()[1] == log_top :
@@ -117,6 +127,7 @@ def right():
 turtle.hideturtle()
 #______________________________________________________________________________________________|    
 def jump_right():
+    global current_log
     move_x = num_1
     move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
@@ -127,7 +138,9 @@ def jump_right():
         if success != True:
             new_x = character.pos()[0] + move_x
             new_y = character.pos()[1] + i
-            turtle.ontimer(character.goto(new_x,new_y),speed)       
+            turtle.ontimer(character.goto(new_x,new_y),speed)
+            for eaten in eatenfood:
+                eaten.goto(character.pos())
             #add aya's code to check for landing
             #if land, break
             x_pos=character.pos()[0]
@@ -141,14 +154,20 @@ def jump_right():
                     log_x = log.pos()[0]
                     if log_x - length <= x_pos <= log_x + length:
                         character.goto(x_pos, log_top)
+                        current_log = log_list.index(log)
                         success = True
                         print(success)
                         break
+            if x_pos >= 390:
+                success = True
+                win()
+                break
         else:
             break
 
 
 def jump_left():
+    global current_log
     move_x = -num_1
     move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
@@ -160,6 +179,8 @@ def jump_left():
             new_x = character.pos()[0] + move_x
             new_y = character.pos()[1] + i
             turtle.ontimer(character.goto(new_x,new_y),speed)       
+            for eaten in eatenfood:
+                eaten.goto(character.pos())
             #add aya's code to check for landing
             #if land, break
             x_pos=character.pos()[0]
@@ -171,10 +192,10 @@ def jump_left():
             elif y_pos == log_top - 10:
                 for log in log_list:
                     log_x = log.pos()[0]
-                    if log_x - length <= x_pos <= log_x + length:
+                    if log_x - length <= x_pos and x_pos <= log_x + length:
                         character.goto(x_pos, log_top)
-                        
                         success = True
+                        current_log = log_list.index(log)
                         print(success)
                         break
         else:
@@ -196,16 +217,40 @@ turtle.onkeypress(jump, SPACEBAR)
 turtle.listen()
 
 def move_char():
+    global current_log
 
     my_pos = character.pos()
     x_pos = my_pos[0]
     y_pos = my_pos[1]
 
     if direction==RIGHT:
-        character.goto(x_pos + 20, y_pos)
+        print('trying to move right')
+        new_pos = (x_pos + 20, y_pos)
+        if current_log != 3:
+            log = log_list[current_log]
+            print('on a log')
+            if new_pos[0] >= log.pos()[0] + length+20:
+                character.goto(x_pos + 20, -250)
+                win()
+                quit()
+            else:
+                print('move right')
+                character.goto(new_pos)
+        if new_pos[0] >= -390:
+            character.goto(new_pos)
+            win()
 
     elif direction==LEFT:
-        character.goto(x_pos - 20, y_pos)
+        new_pos = (x_pos - 20, y_pos)
+        if current_log != 0:
+            log = log_list[current_log]
+            if new_pos[0] <= log.pos()[0] - length+20:
+                character.goto(x_pos - 20, -250)
+                quit()
+            else:
+                character.goto(new_pos)
+        if new_pos[0] <= 390:
+            character.goto(new_pos)
 
     elif direction==UP:
         character.goto(x_pos,y_pos + 20)
@@ -214,12 +259,35 @@ def move_char():
 
     my_pos = character.pos()
     pos_list.append(my_pos)
+    
+    for i in range (len(food_list)):
+        nutrition=food_list[i]
+        cx = character.pos()[0]
+        cy = character.pos()[1]
+        fx = nutrition.pos()[0]
+        fy = nutrition.pos()[1]
+
+        d = ((fx-cx)**2 + (cy-fy)**2)**0.5
+        if d <= 20:
+            eatenfood.append(nutrition)
+
+    for eaten in eatenfood:
+        eaten.goto(character.pos())
 
 
 
 
+def win():
+    win = True
+    if character.pos()[0] >= 390:
+        for food in food_list:
+            if food.pos()[0] < 390:
+                win = False
+    else:
+        win = False
 
-
+    if win == True:
+        print('You win!!!!!!!')
 
 
 
