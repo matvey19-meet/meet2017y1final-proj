@@ -2,6 +2,7 @@
 
 ###CHARACTER###:\
 import turtle
+import time
 SIZE_X=1000
 SIZE_Y=500
 up_edge=250
@@ -166,7 +167,7 @@ def jump_right():
 def jump_left():
     global current_log
     move_x = -num_1
-    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,1,-1,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
+    move_y = [num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,num_2,2,2,2,2,2,1,1,1,1,-1,-1,-1,-1,-2.-2,-2,-2,-2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2,-num_2]
     success = False
 
     
@@ -269,7 +270,7 @@ def move_char():
         cy = character.pos()[1]
         fx = nutrition.pos()[0]
         fy = nutrition.pos()[1]
-
+  
         d = ((fx-cx)**2 + (cy-fy)**2)**0.5
         if d <= 20:
             eatenfood.append(nutrition)
@@ -293,6 +294,7 @@ def win():
         turtle.pencolor('white')
         turtle.goto(-350,-100)
         turtle.write( 'YOU WIN!' , move=False, align="left", font=("Arial", 120, "normal"))
+        time.sleep(5500)
 
 l_up=0
 l_down=1
