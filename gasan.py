@@ -8,11 +8,12 @@ height=20
 length=80
 turtle.setup(SIZE_X,SIZE_Y)
 turtle.tracer(1,0)
-
+###########################3
+#aya's code
 pos_list = []
-
+turtle.bgpic('bg.gif')
 #REGISTERING SHIT
-
+######################3#####
 
 turtle.penup()
 turtle.register_shape('pleasework.gif')
@@ -57,6 +58,8 @@ log_list.append(log)
 
 
 ############################
+
+#Gasan's code
 food_list=[]
 for i in range (1):
     obj=turtle.clone()
@@ -225,8 +228,23 @@ def move_char():
 
     my_pos = character.pos()
     pos_list.append(my_pos)
+
+################################
+#win condition
+def win():
+    win = True
+    if character.pos()[0] >= 390:
+        for food in food_list:
+            if food.pos()[0] < 390:
+                win = False
+    else:
+        win = False
+
+    if win = True:
+        print('You win!!!!!!!')
+
 ###############################################
-   
+#Gasan's code
     for i in range (len(food_list)):
         nutrition=food_list[i]
         cx = character.pos()[0]
@@ -242,56 +260,6 @@ def move_char():
         eaten.goto(character.pos())
 #################################################
 
-
-
-################################
-#Gasan - 1112 adding food
-##import random
-##turtle.penup()
-##food = turtle.clone()
-##food.shape('circle')
-##
-##
-##SQUARE_SIZE=20
-##square_length =1
-##SIZE_X=1000
-##SIZE_Y=500
-##food_pos =[]
-##food_stamps=[]
-##stamp_list=[]
-##turtle.setup(SIZE_X,SIZE_Y)
-##start_width=100
-##
-##def make_food():
-##    min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
-##    max_x=-int(SIZE_X/4/SQUARE_SIZE)
-##    min_y=-int(SIZE_Y/2/SQUARE_SIZE)+1
-##    max_y=int(SIZE_Y/2/SQUARE_SIZE)-1
-##    
-##    food_x=random.randint(min_x,max_x)*SQUARE_SIZE
-##    food_y=random.randint(min_y,max_y)*SQUARE_SIZE
-##    food.goto(food_x,food_y)
-##    new_pos=(food_x,food_y)
-##    food_pos.append(new_pos)
-##    stamp_id=food.stamp()
-##    food_stamps.append(stamp_id)
-
-
-
-
-##    
-##def move_character():
-##    if len(eatenfood)!=0:
-##       food.goto(character.pos())
-##
-
-
-
-
-
-
-
-###############################
 
 
 
