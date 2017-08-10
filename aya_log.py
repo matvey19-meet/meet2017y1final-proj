@@ -7,6 +7,7 @@ down_edge=-250
 height=20
 length=80
 turtle.setup(SIZE_X,SIZE_Y)
+turtle.bgpic('bg.gif')
 
 turtle.hideturtle()
 turtle.register_shape('pleasework.gif')
