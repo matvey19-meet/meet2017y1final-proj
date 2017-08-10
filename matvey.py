@@ -8,9 +8,11 @@ height=20
 length=80
 turtle.setup(SIZE_X,SIZE_Y)
 turtle.tracer(1,0)
+pos_list = []
+turtle.bgpic('bg.gif')
 
 pos_list = []
-
+eatenfood = []
 #REGISTERING SHIT
 
 
@@ -55,6 +57,17 @@ log_list.append(log)
 
 log_list.reverse()
 #CONSTRUCT CHARACTER
+
+
+food_list=[]
+for i in range (1):
+    obj=turtle.clone()
+    obj.showturtle()
+    obj.shape('triangle')
+    obj.penup()
+    obj.goto(-420,100)
+    food_list.append(obj)
+
 
 start_pos = character.pos()
 
@@ -125,7 +138,9 @@ def jump_right():
         if success != True:
             new_x = character.pos()[0] + move_x
             new_y = character.pos()[1] + i
-            turtle.ontimer(character.goto(new_x,new_y),speed)       
+            turtle.ontimer(character.goto(new_x,new_y),speed)
+            for eaten in eatenfood:
+                eaten.goto(character.pos())
             #add aya's code to check for landing
             #if land, break
             x_pos=character.pos()[0]
@@ -145,6 +160,7 @@ def jump_right():
                         break
             if x_pos >= 390:
                 success = True
+                win()
                 break
         else:
             break
@@ -163,6 +179,8 @@ def jump_left():
             new_x = character.pos()[0] + move_x
             new_y = character.pos()[1] + i
             turtle.ontimer(character.goto(new_x,new_y),speed)       
+            for eaten in eatenfood:
+                eaten.goto(character.pos())
             #add aya's code to check for landing
             #if land, break
             x_pos=character.pos()[0]
@@ -213,12 +231,14 @@ def move_char():
             print('on a log')
             if new_pos[0] >= log.pos()[0] + length+20:
                 character.goto(x_pos + 20, -250)
+                win()
                 quit()
             else:
                 print('move right')
                 character.goto(new_pos)
         if new_pos[0] >= -390:
             character.goto(new_pos)
+            win()
 
     elif direction==LEFT:
         new_pos = (x_pos - 20, y_pos)
@@ -239,12 +259,35 @@ def move_char():
 
     my_pos = character.pos()
     pos_list.append(my_pos)
+    
+    for i in range (len(food_list)):
+        nutrition=food_list[i]
+        cx = character.pos()[0]
+        cy = character.pos()[1]
+        fx = nutrition.pos()[0]
+        fy = nutrition.pos()[1]
+
+        d = ((fx-cx)**2 + (cy-fy)**2)**0.5
+        if d <= 20:
+            eatenfood.append(nutrition)
+
+    for eaten in eatenfood:
+        eaten.goto(character.pos())
 
 
 
 
+def win():
+    win = True
+    if character.pos()[0] >= 390:
+        for food in food_list:
+            if food.pos()[0] < 390:
+                win = False
+    else:
+        win = False
 
-
+    if win == True:
+        print('You win!!!!!!!')
 
 
 
