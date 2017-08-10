@@ -147,24 +147,25 @@ def jump_right():
             print(x_pos)
             y_pos=character.pos()[1]
 
-            if y_pos < log_top - 20:
-                quit()
-            elif y_pos == log_top - 10:
-                for log in log_list:
-                    log_x = log.pos()[0]
-                    if log_x - length <= x_pos <= log_x + length:
-                        character.goto(x_pos, log_top)
-                        current_log = log_list.index(log)
-                        success = True
-                        print(success)
-                        break
+##            if y_pos < log_top - 20:
+##                quit()
+##            if y_pos == log_top - 10:
+            for log in log_list:
+                log_x = log.pos()[0]
+                if i>13 and log_x - length <= x_pos <= log_x + length:
+                    character.goto(x_pos, log_top)
+                    current_log = log_list.index(log)
+                    success = True
+                    print(success)
+                    break
             if x_pos >= 390:
                 success = True
                 win()
                 break
         else:
             break
-
+    if success == False:
+        quit()
 
 def jump_left():
     global current_log
@@ -187,20 +188,21 @@ def jump_left():
             print(x_pos)
             y_pos=character.pos()[1]
 
-            if y_pos < log_top - 20:
-                quit()
-            elif y_pos == log_top - 10:
-                for log in log_list:
-                    log_x = log.pos()[0]
-                    if log_x - length <= x_pos and x_pos <= log_x + length:
-                        character.goto(x_pos, log_top)
-                        success = True
-                        current_log = log_list.index(log)
-                        print(success)
-                        break
+##            if y_pos < log_top - 20:
+##                quit()
+##            if y_pos == log_top - 10:
+            for log in log_list:
+                log_x = log.pos()[0]
+                if i>13 and log_x - length <= x_pos and x_pos <= log_x + length:
+                    character.goto(x_pos, log_top)
+                    success = True
+                    current_log = log_list.index(log)
+                    print(success)
+                    break
         else:
             break
-
+    if success == False:
+        quit()
 
 def jump():
     if horizontal_direction==LEFT:
