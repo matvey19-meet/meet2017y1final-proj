@@ -11,6 +11,11 @@ turtle.bgpic('bg.gif')
 
 turtle.hideturtle()
 turtle.register_shape('pleasework.gif')
+turtle.register_shape('burger.gif')
+food=turtle.clone()
+food.shape('burger.gif')
+food.showturtle()
+food.goto(-400,0)
 
 
 turtle.penup()
