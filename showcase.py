@@ -292,7 +292,8 @@ def win():
     if win == True:
         turtle.pencolor('white')
         turtle.goto(-350,-100)
-        turtle.write( 'you won') , move=False, align="left", font=("Arial", 120, "normal"))
+        turtle.write( 'YOU W7535gtdgsbN!')
+move==False, align="left", font=("Arial", 120, "normal")
 
 l_up=0
 l_down=1
@@ -326,4 +327,3 @@ def move_log():
 move_log()
 
 
-4
